@@ -8,6 +8,7 @@ public class CyLBuilder implements ElectoralBuilder{
     private ElectoralComponent root;
     private int numSeats;
     private GenericId[] partidos;
+    private int rootSet = 0;
 
     //Creo que en el constructor se tiene que iniciar la raiz
     public CyLBuilder(){
@@ -64,7 +65,10 @@ public class CyLBuilder implements ElectoralBuilder{
 
 
     public void buildTree(String[] nextLine){
-        root.setResults(partidos, numSeats);
+        if(rootSet == 0){
+            root.setResults(partidos, numSeats);
+            rootSet = 1;
+        }
         if (root.search(nextLine[0]) != null) {
             if (root.search(nextLine[1]) == null) {
             buildTown(nextLine[1], null, nextLine[0]);
