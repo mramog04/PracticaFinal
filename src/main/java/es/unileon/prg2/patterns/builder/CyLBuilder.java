@@ -13,7 +13,7 @@ public class CyLBuilder implements ElectoralBuilder{
     
     @Override
     public void build(Sting[] buildLine){
-        String[] nextLine = buildLine.split(",");
+        String[] nextLine = buildLine;
         if(nextLine.length==6){
             buildTree(nextLine);
         }else{
