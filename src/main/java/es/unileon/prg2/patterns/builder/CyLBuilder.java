@@ -10,6 +10,11 @@ public class CyLBuilder implements ElectoralBuilder{
     private GenericId[] partidos;
 
     //Creo que en el constructor se tiene que iniciar la raiz
+    public CyLBuilder(){
+        this.root = new Region("CyL", null, 0);
+        this.numSeats = 0;
+        this.partidos = null;
+    }
     
     @Override
     public void build(Sting[] buildLine){
@@ -21,6 +26,17 @@ public class CyLBuilder implements ElectoralBuilder{
         }
     }
 
+    public void addPartido(GenericId partido) {
+        if (partidos == null) {
+            partidos = new GenericId[1];
+            partidos[0] = partido;
+        } else {
+            GenericId[] newPartidos = new GenericId[partidos.length + 1];
+            System.arraycopy(partidos, 0, newPartidos, 0, partidos.length);
+            newPartidos[partidos.length] = partido;
+            partidos = newPartidos;
+        }
+    }
 
     public void buildProvinces(String[] buildLine){
         int i=2, j=0;
@@ -30,12 +46,16 @@ public class CyLBuilder implements ElectoralBuilder{
             i++;
             j++;
         }
-        boolean found = false;
-        for(GenericId part : partidos){
-            for (GenericId part2 : this.partidos){
-                if(part.equals(part2)){
-                    found = true;
+        for (GenericId partido : partidos) {
+            boolean exists = false;
+            for (GenericId existingPartido : this.partidos) {
+                if (existingPartido.equals(partido)) {
+                    exists = true;
+                    break;
                 }
+            }
+            if (!exists) {
+                addPartido(partido);
             }
         }
         this.numSeats = this.numSeats + Integer.parseInt(buildLine[1]);
@@ -44,14 +64,20 @@ public class CyLBuilder implements ElectoralBuilder{
 
 
     public void buildTree(String[] nextLine){
-        if(root==null){
-            buildRegion("CyL", null, numSeats);
-        }
-        if(root.search(nextLine[0])!=null){
+        root.setResults(partidos, numSeats);
+        if (root.search(nextLine[0]) != null) {
+            if (root.search(nextLine[1]) == null) {
             buildTown(nextLine[1], null, nextLine[0]);
+            }
+            if (root.search(nextLine[2]) == null) {
             buildDistrict(nextLine[2], null, nextLine[1]);
+            }
+            if (root.search(nextLine[3]) == null) {
             buildSection(nextLine[3], null, nextLine[2]);
+            }
+            if (root.search(nextLine[4]) == null) {
             buildElectoralSchool(nextLine[4], null, nextLine[3], Integer.parseInt(nextLine[5]));
+            }
         }
     }
 

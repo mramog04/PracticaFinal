@@ -10,7 +10,7 @@ public class Town extends ElectoralComposite{
     private final Levels nivel = Levels.TOWN;
 
     public Town(GenericId id,GenericId[] partidos,int numSeats) {
-        super(id,partidos,numSeats);
+        super(id,partidos,0);
         //TODO Auto-generated constructor stub
     }
     

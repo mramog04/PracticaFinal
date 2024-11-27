@@ -19,12 +19,17 @@ public class ElectoralComposite implements ElectoralComponent{
     public ElectoralComposite(GenericId id,GenericId[] partidos,int numSeats){
         this.id = id;
         components2 = new VectorAggregate<>();
-        this.results = new ConcreteResults(partidos,numSeats);
+        this.results = new ConcreteResults(partidos,0);
+
     }
 
     public ElectoralComposite(String id){
         this.id = new GenericId(id);
         components2 = new VectorAggregate<>();
+    }
+
+    public void setResults(GenericId[] partidos,int numSeats){
+        this.results = new ConcreteResults(partidos,numSeats);
     }
 
     @Override

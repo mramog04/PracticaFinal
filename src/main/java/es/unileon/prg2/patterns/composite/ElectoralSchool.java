@@ -18,7 +18,7 @@ public class ElectoralSchool implements ElectoralComponent{
 
     public ElectoralSchool(GenericId id,GenericId[] partidos,int votos){
         this.id = id;
-        this.results = new ConcreteResults(partidos,votos);
+        this.results = new ConcreteResults(partidos,0);
 
     }
 
