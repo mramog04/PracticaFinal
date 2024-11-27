@@ -16,9 +16,9 @@ public class ElectoralSchool implements ElectoralComponent{
     private ElectoralStrategy strategy;
     private Results results;//no se si puede ser concrete
 
-    public ElectoralSchool(GenericId id,GenericId[] partidos){
+    public ElectoralSchool(GenericId id,GenericId[] partidos,int votos){
         this.id = id;
-        this.results = new ConcreteResults(partidos,0);
+        this.results = new ConcreteResults(partidos,votos);
 
     }
 

@@ -5,27 +5,39 @@ import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+
 
 public class ElectoralDirector {
     private ElectoralBuilder builder;
     //atributos csv
-    private String csvFile;
+    private String csvFile = "src/main/resources/Elecciones2022CyL_censo(1).csv";//Esto deberia ser pasado por el constructor creo
+    private String csvFile2 = "src/main/resources/Elecciones2022CyL_partidosYprocuradores(1).csv";//Esto deberia ser pasado por el constructor creo
 
     public ElectoralDirector(ElectoralBuilder builder){
         this.builder=builder;
     }
 
+    //En algun sitio se tendra que pasar el nobre de lo que queremos crear
     public void construct(){
-        StringBuilder sb = new StringBuilder();
-
-
-
-        try(){
-
-        }
         
-        //Entiendo que aqui creamos CyL en funcion a las entradas del documento este que nos dan,
-        //pero no se donde se sacan del documento que nos dan las instrucciones para crear CyL
+        String[] nextLine;
+
+        try(CSVReader reader = new CSVReader(new FileReader(csvFile))){
+            while((nextLine = reader.readNext())!=null){
+                builder.buildProvinces(nextLine);
+            }
+        }catch(IOException | CsvValidationException e){
+            e.printStackTrace();
+            //No se que hacer si algo falla a la hora de leer el csv
+        }
+
+        try(CSVReader reader = new CSVReader(new FileReader(csvFile2))){
+            while((nextLine = reader.readNext())!=null){
+                builder.build(nextLine);
+            }
+        }catch(IOException | CsvValidationException e){
+            e.printStackTrace();
+            //No se que hacer si algo falla a la hora de leer el csv
+        }
     }
 }

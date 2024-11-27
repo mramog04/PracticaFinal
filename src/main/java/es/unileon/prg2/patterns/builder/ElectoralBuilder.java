@@ -4,7 +4,7 @@ import es.unileon.prg2.patterns.composite.*;
 import es.unileon.prg2.patterns.handler.GenericId;
 
 public interface ElectoralBuilder {
-    public void build(String buildLine);
+    public void build(String[] buildLine);
     
     public ElectoralComponent getBuild();
 
