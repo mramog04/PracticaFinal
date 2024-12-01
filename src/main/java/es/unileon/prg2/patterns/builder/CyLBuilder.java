@@ -47,12 +47,12 @@ public class CyLBuilder implements ElectoralBuilder{
             i++;
             j++;
         }
+        boolean exists;
         for (GenericId partido : partidos) {
-            boolean exists = false;
+            exists = false;
             for (GenericId existingPartido : this.partidos) {
                 if (existingPartido.equals(partido)) {
                     exists = true;
-                    break; //ESTO SE QUITA DE AQUI LO ANTES POSIBLE
                 }
             }
             if (!exists) {
