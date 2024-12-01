@@ -94,7 +94,7 @@ public class CyLBuilder implements ElectoralBuilder{
     @Override
     public void buildElectoralSchool(GenericId name, GenericId[] partidos, GenericId parentId,int numVotos) throws CompositeException {
         // TODO Auto-generated method stub
-        ElectoralComposite parent = (ElectoralComposite) root.search(parentId);
+        ElectoralComponent parent = root.search(parentId);
         parent.add(new ElectoralSchool(name, partidos,numVotos));
     }
 
@@ -116,19 +116,19 @@ public class CyLBuilder implements ElectoralBuilder{
 
     @Override
     public void buildTown(GenericId name, GenericId[] partidos, GenericId parentId) throws CompositeException {
-        ElectoralComposite parent = (ElectoralComposite) root.search(parentId);
+        ElectoralComponent parent = root.search(parentId);
         parent.add(new Town(name, partidos, 0));
     }
 
     @Override
     public void buildSection(GenericId name, GenericId[] partidos, GenericId parentId) throws CompositeException {
-        ElectoralComposite parent = (ElectoralComposite) root.search(parentId);
+        ElectoralComponent parent = root.search(parentId);
         parent.add(new Section(name, partidos));
     }
 
     @Override
     public void buildDistrict(GenericId name, GenericId[] partidos, GenericId parentId) throws CompositeException {
-        ElectoralComposite parent = (ElectoralComposite) root.search(parentId);
+        ElectoralComponent parent = root.search(parentId);
         parent.add(new District(name, partidos));
     }
 
