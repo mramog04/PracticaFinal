@@ -52,7 +52,7 @@ public class CyLBuilder implements ElectoralBuilder{
             for (GenericId existingPartido : this.partidos) {
                 if (existingPartido.equals(partido)) {
                     exists = true;
-                    break;
+                    break; //ESTO SE QUITA DE AQUI LO ANTES POSIBLE
                 }
             }
             if (!exists) {
