@@ -24,7 +24,7 @@ public class ElectoralDirector {
 
         try(CSVReader reader = new CSVReader(new FileReader(csvFile))){
             while((nextLine = reader.readNext())!=null){
-                builder.buildProvinces(nextLine);
+                builder.build(nextLine);
             }
         }catch(IOException | CsvValidationException e){
             e.printStackTrace();
