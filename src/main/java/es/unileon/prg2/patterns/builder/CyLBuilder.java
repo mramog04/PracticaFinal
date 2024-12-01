@@ -7,7 +7,7 @@ public class CyLBuilder implements ElectoralBuilder{
 
     private ElectoralComponent root;
     private int numSeats;
-    private GenericId[] partidos;
+    private GenericId[] partidos; //PREGUNTAR QUE SE DEBE HACER, SI TRABAJAR CON LA RAIZ O CON ESTAS VARIABLES
     private int rootSet = 0;
 
     //Creo que en el constructor se tiene que iniciar la raiz
