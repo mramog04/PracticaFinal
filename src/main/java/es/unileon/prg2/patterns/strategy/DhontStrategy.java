@@ -8,7 +8,7 @@ import es.unileon.prg2.patterns.handler.GenericId;
 
 public class DhontStrategy implements ElectoralStrategy{
 
-    public int[][] votos;
+    private int[][] votos;
     @Override
     public void applyStrategy(Results results,int numSeats) throws Exception{
 
